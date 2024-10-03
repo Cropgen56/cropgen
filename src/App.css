@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* New CSS */
+
+.Menubar {
+  background-color: #344E41 !important;
+  transition: 'all 0.2s',
+}
+
+.Menubar .ant-menu {
+  background-color: #344E41;
+  color: #ffffff;
+}
+
+.Menubar .ant-menu-item {
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding: 5px 5px;
+}
+
+.Menubar .ant-menu-item span.menu-label {
+  display: inline-flex;
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 7px;
+}
+
+.Menubar .ant-menu-item span.menu-soil {
+ margin-left: -20px;
+}
+
+.Menubar .ant-menu-item span.menu-soil2 {
+  margin-left: -5px;
+ }
+
+
+.Menubar .ant-menu-item-selected {
+  background-color: #5f7e6f !important;
+  color: #ffffff;
+}
+
+.Menubar .ant-menu-item:not(.logout):hover{
+  background-color: #5f7e6f !important;
+  color: #ffffff !important;
+}
+
+.logout:hover {
+  background-color: #ff5347 !important;
+  color: #ffffff !important;
+}
+
+.pie-chart-shadow {
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+}
+
+.current-day {
+  background-color: #168a7b; 
+  padding: 0;
+  border-radius: 8px;
+  color: white;
+}
+
+.crop-advisory-container {
+  margin: 0;
+
+}
+
+.crop-advisory-wrapper {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.crop-box {
+  min-width: 320px;
+  height: 210px;
+  background-color: #5A7C6BB2;
+  margin-right: 15px;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+
+/* General Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: #2F4F4F; /* Dark green background */
+}
+
+.sidebar {
+  width: 60px; /* Sidebar width */
+  background-color: #2F3E3F;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.calendar-container {
+  flex: 1;
+  background-color: #2F4F4F;
+}
+
+.calendar-controls {
+  padding: 10px;
+  background-color: #4C605D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-button {
+  background-color: #789374;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.view-toggle .view-btn {
+  background-color: #4C605D;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.view-toggle .view-btn.active {
+  background-color: #789374;
+}
+
+.custom-calendar .rbc-toolbar {
+  display: none; /* Hide default toolbar */
+}
+
+.custom-calendar .rbc-calendar {
+  background-color: #2F4F4F;
+  color: white;
+}
+
+.custom-calendar .rbc-time-view {
+  border: 1px solid #789374; /* Green border for the calendar grid */
+}
+
+.custom-calendar .rbc-time-view .rbc-time-header {
+  background-color: #4C605D;
+  color: #D1E1C7;
+}
+
+.custom-calendar .rbc-time-view .rbc-timeslot-group {
+  border-bottom: 1px solid #789374;
+}
+
+.custom-calendar .rbc-event {
+  background-color: #789374;
+  color: white;
+}
+
+/* Custom Icons */
+.icon {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Customize as per your icons */
+.icon-dashboard::before {
+  content: "\f015"; /* Example FontAwesome unicode for home icon */
+}
+
+.icon-calendar::before {
+  content: "\f073"; /* Example for calendar */
+}
+
