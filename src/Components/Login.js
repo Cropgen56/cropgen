@@ -60,7 +60,7 @@ const LoginSignup = () => {
   const handleSignup = async (values) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://127.0.0.1:8000/Farmers/', {
+      const response = await axios.post('https://first-project-jx9w.onrender.com/Farmers/', {
         name: `${values.firstName} ${values.lastName}`, // Combine first and last name
         email: values.email,
         phone: values.phone,
