@@ -5,6 +5,7 @@ import Navbar from './Components/NavBar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginSignup from '../src/Components/Login'
+import '../src/Components/i18n'; 
 
 
 

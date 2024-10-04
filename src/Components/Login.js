@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { Form, Input, Button, Row, Col, message } from 'antd';
 import 'antd/dist/reset.css'; // Import Ant Design styles
@@ -6,26 +6,44 @@ import { useNavigate } from 'react-router-dom';
 import FlagsSelect from 'react-flags-select';
 import 'react-phone-input-2/lib/style.css';
 import Component from '../../src/assets/Component.png';
+import './i18n';
+
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 
 const countryLanguages = {
-  'IN': 'Hindi', // India
-  'US': 'English', // United States
-  'CA': 'English/French', // Canada
-  'GB': 'English', // United Kingdom
-  'AU': 'English', // Australia
-  'FR': 'French', // France
-  'DE': 'German', // Germany
-  'IT': 'Italian', // Italy
-  'JP': 'Japanese', // Japan
-  'CN': 'Chinese', // China
+  'IN': 'hi', // India - Hindi
+  'US': 'en', // United States - English
+  'CA': 'en', // Canada - English (you might want to add French as well)
+  'GB': 'en', // United Kingdom - English
+  'AU': 'en', // Australia - English
+  'FR': 'fr', // France - French
+  'DE': 'en', // Germany - English (add German if you have translations)
+  'IT': 'en', // Italy - English (add Italian if you have translations)
+  'JP': 'en', // Japan - English (add Japanese if you have translations)
+  'CN': 'en', // China - English (add Chinese if you have translations)
 };
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [country, setCountry] = useState('IN');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation(); 
+  console.log('Current language:', i18n.language);
+console.log('Translations:', t('login'), t('submit'));
+console.log('Translations:', t('login'), t('submit'));
+
+useEffect(() => {
+  console.log('Language changed:', i18n.language);
+}, [i18n.language]);
+
+  const changeLanguage = (countryCode) => {
+    setCountry(countryCode);
+    const language = countryLanguages[countryCode] || 'en';
+    i18n.changeLanguage(language); // Change the language based on the country code
+  };
 
  // Function to handle form submission
  const handleLogin = async (values) => {
@@ -105,7 +123,7 @@ const LoginSignup = () => {
       <div style={{ position: 'absolute', top: 20, right: 20 }}>
           <FlagsSelect
             selected={country}
-            onSelect={(code) => setCountry(code)}
+            onSelect={changeLanguage}
             countries={["IN", "US", "CA", "GB", "AU", "FR", "DE", "IT", "JP", "CN"]}
             placeholder="Select Country"
             className="flag-select"
@@ -116,7 +134,8 @@ const LoginSignup = () => {
             }}
           />
           <span style={{ color: '#ffff', marginLeft: '8px' }}>
-            {countryLanguages[country]} {/* Display the official language */}
+          {i18n.language.toUpperCase()}
+ {/* Display the official language */}
           </span>
           </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'absolute', top: 100, right:150}}>
@@ -132,14 +151,14 @@ const LoginSignup = () => {
                   onClick={() => setIsLogin(true)}
                   style={{ flex: 1, backgroundColor: isLogin ? '#075A53' : 'transparent', color: '#fff', fontWeight: 'bold', borderTopLeftRadius: '18px',borderBottomLeftRadius: 0,borderBottomRightRadius: 0,borderTopRightRadius: 0, fontSize: 20, padding: 35, borderColor: isLogin ? '#fff':''}}
                 >
-                Sign Up
+                {t('Sign Up')}
                 </Button>
                 <Button
                 type='text'
                   onClick={() => setIsLogin(false)}
                   style={{ flex: 1, backgroundColor: !isLogin ? '#075A53' : 'transparent', color: '#fff', fontWeight: 'bold', borderTopRightRadius: '18px',borderBottomLeftRadius: 0,borderBottomRightRadius: 0,borderTopLeftRadius: 0,fontSize: 20, padding: 35, borderColor: !isLogin ? '#fff':''}}
                 >
-                  Login
+                  {t('Login')}
                 </Button>
               </div>
               <div style={{padding: '25px'}}>
@@ -180,7 +199,7 @@ const LoginForm = ({ onLogin, loading }) => (
   >
     <Form.Item
       name="email"
-      label={<span style={{ color: 'white', fontWeight:'bold' }}>Email</span>}
+      label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Email')}</span>}
       rules={[{ required: true, message: 'Please enter your email!' }]}
     >
       <Input
@@ -190,13 +209,13 @@ const LoginForm = ({ onLogin, loading }) => (
           borderColor: '#075A53',
           borderRadius: '4px'
         }}
-        placeholder="Enter your email"
+        placeholder={t("Enter your email")}
         placeholderColor="color: #fff"
       />
     </Form.Item>
     <Form.Item
       name="password"
-      label={<span style={{ color: 'white', fontWeight:'bold' }}>Password</span>}
+      label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Password')}</span>}
       rules={[{ required: true, message: 'Please enter your password!' }]}
     >
       <Input.Password
@@ -206,12 +225,12 @@ const LoginForm = ({ onLogin, loading }) => (
           borderColor: '#075A53',
           borderRadius: '4px'
         }}
-        placeholder="Enter your password"
+        placeholder={t("Enter your password")}
       />
     </Form.Item>
     <Form.Item>
       <Button type="primary" htmlType="submit" block loading={loading} style={{backgroundColor: '#3592FD'}}>
-        Login
+        {t('Login')}
       </Button>
     </Form.Item>
   </Form>
@@ -228,7 +247,7 @@ const SignupForm = ({onSignup}) => (
       <Col span={12}>
         <Form.Item
           name="firstName"
-          label={<span style={{ color: 'white', fontWeight:'bold' }}>First Name</span>}
+          label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('First Name')}</span>}
           rules={[{ required: true, message: 'Please enter your first name!' }]}
         >
           <Input
@@ -238,14 +257,14 @@ const SignupForm = ({onSignup}) => (
               borderColor: '#075A53',
               borderRadius: '4px'
             }}
-            placeholder="Enter your first name"
+            placeholder={t("Enter your first name")}
           />
         </Form.Item>
       </Col>
       <Col span={12}>
         <Form.Item
           name="lastName"
-          label={<span style={{ color: 'white', fontWeight:'bold' }}>Last Name</span>}
+          label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Last Name')}</span>}
           rules={[{ required: true, message: 'Please enter your last name!' }]}
         >
           <Input
@@ -255,14 +274,14 @@ const SignupForm = ({onSignup}) => (
               borderColor: '#075A53',
               borderRadius: '4px'
             }}
-            placeholder="Enter your last name"
+            placeholder={t("Enter your last name")}
           />
         </Form.Item>
       </Col>
     </Row>
     <Form.Item
       name="email"
-      label={<span style={{ color: 'white', fontWeight:'bold' }}>Email</span>}
+      label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Email')}</span>}
       rules={[{ required: true, message: 'Please enter your email!' }]}
     >
       <Input
@@ -272,12 +291,12 @@ const SignupForm = ({onSignup}) => (
           borderColor: '#075A53',
           borderRadius: '4px'
         }}
-        placeholder="Enter your email"
+        placeholder={t("Enter your email")}
       />
     </Form.Item>
     <Form.Item
       name="phone"
-      label={<span style={{ color: 'white', fontWeight:'bold' }}>Phone Number</span>}
+      label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Phone Number')}</span>}
       rules={[{ required: true, message: 'Please enter your phone number!' }]}
     >
       <Input
@@ -287,12 +306,12 @@ const SignupForm = ({onSignup}) => (
           borderColor: '#075A53',
           borderRadius: '4px'
         }}
-        placeholder="Enter your phone number"
+        placeholder={t("Enter your phone number")}
       />
     </Form.Item>
     <Form.Item
       name="password"
-      label={<span style={{ color: 'white', fontWeight:'bold' }}>Password</span>}
+      label={<span style={{ color: 'white', fontWeight:'bold' }}>{t('Password')}</span>}
       rules={[{ required: true, message: 'Please enter your password!' }]}
     >
       <Input.Password
@@ -302,12 +321,12 @@ const SignupForm = ({onSignup}) => (
           borderColor: '#075A53',
           borderRadius: '4px'
         }}
-        placeholder="Enter your password"
+        placeholder={t("Enter your password")}
       />
     </Form.Item>
     <Form.Item>
       <Button type="primary" htmlType="submit" block style={{backgroundColor: '#3592FD'}}>
-        Sign Up
+        {t("Sign Up")}
       </Button>
     </Form.Item>
   </Form>
