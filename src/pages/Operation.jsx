@@ -37,7 +37,7 @@ const Operation = (props) => {
     <div>
       <Calendar
         localizer={localizer}
-        events={events} // Use local state for events
+        events={events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: "130vh" }}

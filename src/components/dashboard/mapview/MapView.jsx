@@ -1,6 +1,6 @@
 import L from "leaflet";
 import React, { useState, useEffect, useRef } from "react";
-import { Layout, Switch, Button } from "antd";
+import { Layout, Button } from "antd";
 import {
   MapContainer,
   TileLayer,
@@ -8,14 +8,18 @@ import {
   Popup,
   Polygon,
   useMapEvents,
+  ZoomControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import * as ELG from "esri-leaflet-geocoder";
+import rightArrow from "../../../assets/image/dashboard/ep_right (1).png";
+import leftArrow from "../../../assets/image/dashboard/ep_right.png";
+import calender from "../../../assets/image/dashboard/Vector (2).png";
 import "./MapView.css";
-
 const { Content } = Layout;
 
 const MapData = () => {
@@ -48,31 +52,37 @@ const MapData = () => {
   };
 
   useEffect(() => {
-    // if (mapRef.current) {
-    //   const geocoder = L.Control.geocoder({
-    //     defaultMarkGeocode: false
-    //   })
-    //   .on('markgeocode', function(e) {
-    //     const bbox = e.geocode.bbox;
-    //     const poly = L.polygon([
-    //       bbox.getSouthEast(),
-    //       bbox.getNorthEast(),
-    //       bbox.getNorthWest(),
-    //       bbox.getSouthWest()
-    //     ]).addTo(mapRef.current);
-    //     mapRef.current.fitBounds(poly.getBounds());
-    //   })
-    //   .addTo(mapRef.current);
-    // }
-  }, []);
+    if (!mapRef.current) return;
+
+    const searchControl = new ELG.Geosearch().addTo(mapRef.current);
+
+    searchControl.on("results", function (data) {
+      if (data.results.length > 0) {
+        const { latlng } = data.results[0];
+        setMarkers((currentMarkers) => [...currentMarkers, latlng]);
+        mapRef.current.setView(latlng, 10);
+      }
+    });
+  }, [mapRef]);
+
+  const toggleAddMarkers = () => {
+    setIsAddingMarkers((prev) => !prev);
+  };
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout className="mt-3">
       <Content style={{ height: "100%", position: "relative" }}>
         <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          style={{ height: "100%", width: "100%" }}
+          center={[20.5937, 78.9629]}
+          zoom={5}
+          zoomControl={false}
+          style={{
+            height: "80vh",
+            width: "78vw",
+            margin: "auto",
+            borderRadius: "1rem",
+            border: "2px solid #ccc",
+          }}
           whenCreated={(mapInstance) => {
             mapRef.current = mapInstance;
           }}
@@ -101,21 +111,38 @@ const MapData = () => {
             />
           )}
           <Markers />
+          <ZoomControl />
         </MapContainer>
         <div className="map-controls">
-          <Switch
-            checked={isAddingMarkers}
-            checkedChildren="Disable Adding"
-            unCheckedChildren="Enable Adding"
-            onChange={(checked) => setIsAddingMarkers(checked)}
-            style={{ position: "absolute", top: 350, left: 50, zIndex: 1000 }}
-          />
           <Button
-            style={{ position: "absolute", top: 345, left: 190, zIndex: 1000 }}
+            style={{
+              position: "absolute",
+              top: 290,
+              left: -30,
+              zIndex: 1000,
+            }}
             onClick={() => setMarkers([])}
           >
             Delete Markers
           </Button>
+        </div>
+        <div className="add-field-button">
+          <div className="d-flex justify-content-between mx-auto">
+            <div>
+              <button>
+                <img src={calender} alt="calender" />
+              </button>
+              <button>
+                <img src={leftArrow} alt="left arrow" />
+              </button>
+            </div>
+            <button onClick={toggleAddMarkers} className="w-75 add-field">
+              Add Field
+            </button>
+            <button>
+              <img src={rightArrow} alt="right arrow" />
+            </button>
+          </div>
         </div>
       </Content>
     </Layout>

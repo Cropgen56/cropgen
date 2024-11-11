@@ -6,13 +6,16 @@ const MainLayout = () => {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       {/* Left Sidebar */}
-      <Sidebar />
-
+      <div style={{ width: "20%" }}>
+        {" "}
+        <Sidebar />
+      </div>
       {/* Main Content Area */}
       <main
         style={{
-          marginLeft: "250px",
-          padding: "20px",
+          // marginLeft: "10px",
+          // padding: "20px",
+          width: "100%",
           flex: 1,
           overflowY: "auto",
         }}

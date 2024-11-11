@@ -21,7 +21,7 @@ const AppRoutes = () => {
       <Routes>
         {/* Main Site Routes */}
         <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cropgen-analytics" element={<CropGenAnalytics />} />
           <Route path="/addfield" element={<AddField />} />

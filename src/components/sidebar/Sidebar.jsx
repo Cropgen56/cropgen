@@ -32,7 +32,7 @@ function Sidebar() {
           <div
             className="title-container"
             onClick={() => {
-              navigate("/");
+              navigate("/dashboard");
             }}
           >
             <img src={logo} alt="company_logo" className="company-logo" />
@@ -40,7 +40,7 @@ function Sidebar() {
           </div>
           {/* profile card */}
           <Card
-            style={{ width: "14rem", marginTop: "0px", marginBottom: "0px" }}
+            style={{ width: "13rem", marginTop: "0px", marginBottom: "0px" }}
             onClick={() => {
               navigate("/profile");
             }}
