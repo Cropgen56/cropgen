@@ -1,110 +1,207 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Card from "react-bootstrap/Card";
 import logo from "../../assets/image/logo.png";
 import profile from "../../assets/image/profile.png";
-import cropgenanalytics from "../../assets/image/cropgenanalytics.png";
-import addfield from "../../assets/image/addfield.png";
-import wether from "../../assets/image/wether.png";
-import operation from "../../assets/image/operation.png";
-import faramreport from "../../assets/image/farmreport.png";
-import smartadvisory from "../../assets/image/smartadvisory.png";
-import diseasdeteaction from "../../assets/image/diseasdeteaction.png";
-import setting from "../../assets/image/setting.png";
-import cropinformation from "../../assets/image/cropinformation.png";
-import personalisecropshedule from "../../assets/image/personalisecropshedule.png";
-import logout from "../../assets/image/logout.png";
+import {
+  AddFieldIcon,
+  CropAnalysisIcon,
+  CropInformation,
+  DieaseDetaction,
+  FarmReport,
+  Operation,
+  SmartAdvisory,
+  Weather,
+  PersonaliseCropShedule,
+  Setting,
+  Logout,
+  Hammer,
+  Logo,
+} from "../../assets/icons";
 import "./Sidebar.css";
 
-function Sidebar() {
+function Sidebar({ onToggleCollapse }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [selectedRoute, setSelectedRoute] = useState("");
   const navigate = useNavigate();
+
+  const handleCollapseToggle = (collapse) => {
+    const newCollapsedState = collapse || !isCollapsed;
+    setIsCollapsed(newCollapsedState);
+    onToggleCollapse(newCollapsedState);
+  };
+
+  const handleNavigation = (path) => {
+    // set the selected route and change the background color of the active link
+    // setSelectedRoute(path);
+    navigate(path);
+    handleCollapseToggle(true);
+  };
+
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <Offcanvas
         show={true}
         onHide={() => {}}
         scroll={true}
         backdrop={false}
-        className="offcanvas "
+        className={`offcanvas ${isCollapsed ? "collapsed" : ""}`}
       >
-        <Offcanvas.Body>
+        <Offcanvas.Body className="p-0 m-0">
           <div
             className="title-container"
-            onClick={() => {
-              navigate("/dashboard");
-            }}
+            onClick={() => handleNavigation("/dashboard")}
           >
-            <img src={logo} alt="company_logo" className="company-logo" />
-            <span className="title-text">CropGen</span>
+            {!isCollapsed && <Logo />}
+            {!isCollapsed && <span className="title-text">CropGen</span>}
           </div>
-          {/* profile card */}
-          <Card
-            style={{ width: "13rem", marginTop: "0px", marginBottom: "0px" }}
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            <Card.Title className="active">Active</Card.Title>
-            <Card.Img variant="top" src={profile} className="profile-image" />
-            <Card.Body className="text-center">
-              <Card.Title className="profile-user-name">User Name</Card.Title>
-              <Card.Text className="profile-user-email">
-                user@gmail.com
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          {/* Navigation Links */}
+
+          {!isCollapsed && (
+            <Card
+              style={{ width: isCollapsed ? "4rem" : "13rem" }}
+              onClick={() => handleNavigation("/profile")}
+              className="profile-card"
+            >
+              <Card.Img variant="top" src={profile} className="profile-image" />
+              <Card.Body className="text-center">
+                <Card.Title className="profile-user-name">User Name</Card.Title>
+                <Card.Text className="profile-user-email">
+                  user@gmail.com
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+
           <nav className="sidebar-nav">
             <ul>
-              <li>
-                <img src={cropgenanalytics} alt="crop analytics image" />
-                <Link to="/cropgen-analytics">CropGen Analytics</Link>
+              {isCollapsed && (
+                <li
+                  className="collapse-button mb-3"
+                  onClick={() => handleCollapseToggle(false)}
+                >
+                  <Hammer />
+                </li>
+              )}
+              <li
+                onClick={() => handleNavigation("/cropgen-analytics")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/cropgen-analytics"
+                      ? "white"
+                      : "transparent",
+                }}
+              >
+                <CropAnalysisIcon />
+                {!isCollapsed && "CropGen Analytics"}
               </li>
-              <li>
-                <img src={addfield} alt="crop analytics image" />
-                <Link to="/addfield">Add Field</Link>
+              <li
+                onClick={() => handleNavigation("/addfield")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/addfield" ? "white" : "transparent",
+                }}
+              >
+                <AddFieldIcon />
+                {!isCollapsed && "Add Field"}
               </li>
-              <li>
-                <img src={wether} alt="crop analytics image" />
-                <Link to="/weather">Weather</Link>
+              <li
+                onClick={() => handleNavigation("/weather")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/weather" ? "white" : "transparent",
+                }}
+              >
+                <Weather />
+                {!isCollapsed && "Weather"}
               </li>
-              <li>
-                <img src={operation} alt="crop analytics image" />
-                <Link to="/operation">Operation</Link>
+              <li
+                onClick={() => handleNavigation("/operation")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/operation" ? "white" : "transparent",
+                }}
+              >
+                <Operation />
+                {!isCollapsed && "Operation"}
               </li>
-              <li>
-                <img src={diseasdeteaction} alt="crop analytics image" />
-                <Link to="/disease-detection">Disease Detection</Link>
+              <li
+                onClick={() => handleNavigation("/disease-detection")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/disease-detection"
+                      ? "white"
+                      : "transparent",
+                }}
+              >
+                <DieaseDetaction />
+                {!isCollapsed && "Disease Detection"}
               </li>
-              <li>
-                <img src={smartadvisory} alt="crop analytics image" />
-                <Link to="/smart-advisory">Smart Advisory</Link>
+              <li
+                onClick={() => handleNavigation("/smart-advisory")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/smart-advisory"
+                      ? "white"
+                      : "transparent",
+                }}
+              >
+                <SmartAdvisory />
+                {!isCollapsed && "Smart Advisory"}
               </li>
-              <li>
-                <img src={cropinformation} alt="crop analytics image" />
-                <Link to="/crop-information">Crop Information</Link>
+              <li
+                onClick={() => handleNavigation("/crop-information")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/crop-information"
+                      ? "white"
+                      : "transparent",
+                }}
+              >
+                <CropInformation />
+                {!isCollapsed && "Crop Information"}
               </li>
-              <li>
-                <img src={faramreport} alt="crop analytics image" />
-                <Link to="/farm-report">Farm Report</Link>
+              <li
+                onClick={() => handleNavigation("/farm-report")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/farm-report" ? "white" : "transparent",
+                }}
+              >
+                <FarmReport />
+                {!isCollapsed && "Farm Report"}
               </li>
-              <li className="d-flex">
-                <img src={personalisecropshedule} alt="crop analytics image" />
-                <Link to="/personalise-crop-shedule">
-                  Personalise Crop Schedule
-                </Link>
+              <li
+                onClick={() => handleNavigation("/personalise-crop-shedule")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/personalise-crop-shedule"
+                      ? "white"
+                      : "transparent",
+                }}
+              >
+                <PersonaliseCropShedule />
+                {!isCollapsed && "Personalise Crop Schedule"}
               </li>
-              <li>
-                <img src={setting} alt="crop analytics image" />
-                <Link to="/setting">Setting</Link>
+              <li
+                onClick={() => handleNavigation("/setting")}
+                style={{
+                  backgroundColor:
+                    selectedRoute === "/setting" ? "white" : "transparent",
+                }}
+              >
+                <Setting />
+                {!isCollapsed && "Setting"}
               </li>
             </ul>
           </nav>
-          <div className="offcanvas-footer">
+          <div
+            className="offcanvas-footer"
+            onClick={() => handleNavigation("/logout")}
+          >
             <p className="footer-text">
-              <img src={logout} alt="logout icon" className="logout-icon" />
-              <span>Logout</span>
+              <Logout />
+              {!isCollapsed && <span>Logout</span>}
             </p>
           </div>
         </Offcanvas.Body>

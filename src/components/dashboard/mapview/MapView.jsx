@@ -16,9 +16,9 @@ import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import * as ELG from "esri-leaflet-geocoder";
-import rightArrow from "../../../assets/image/dashboard/ep_right (1).png";
-import leftArrow from "../../../assets/image/dashboard/ep_right.png";
-import calender from "../../../assets/image/dashboard/Vector (2).png";
+import rightArrow from "../../../assets/image/dashboard/right.png";
+import leftArrow from "../../../assets/image/dashboard/left.png";
+import calender from "../../../assets/image/dashboard/calender.png";
 import "./MapView.css";
 const { Content } = Layout;
 
@@ -78,10 +78,9 @@ const MapData = () => {
           zoomControl={false}
           style={{
             height: "80vh",
-            width: "78vw",
+            width: "auto",
             margin: "auto",
             borderRadius: "1rem",
-            border: "2px solid #ccc",
           }}
           whenCreated={(mapInstance) => {
             mapRef.current = mapInstance;
@@ -117,8 +116,8 @@ const MapData = () => {
           <Button
             style={{
               position: "absolute",
-              top: 290,
-              left: -30,
+              top: 60,
+              left: 37,
               zIndex: 1000,
             }}
             onClick={() => setMarkers([])}

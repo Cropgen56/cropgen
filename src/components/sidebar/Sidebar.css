@@ -2,9 +2,18 @@
 .sidebar {
   display: flex;
   min-height: 100vh;
+  transition: width 0.3s ease;
 }
-
-/* cropgen tilet and logo style  */
+/* cropgen title and logo style  */
+.collapse-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.collapse-button img {
+  width: 1.5rem !important;
+  height: 1.3rem !important;
+}
 
 .title-container {
   display: flex;
@@ -30,11 +39,19 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 257px !important;
   z-index: 1030;
   border-right: 1px solid #ddd;
   background-color: #344e41 !important;
   overflow-y: auto;
+  width: 240px !important;
+  transition: width 0.3s ease;
+}
+.offcanvas.collapsed {
+  width: 60px !important;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  transition: width 0.3s ease;
 }
 /* card profile css style */
 .card {
@@ -71,18 +88,8 @@
 }
 
 /* sidebar nav style */
-
-.sidebar-nav img {
-  width: 1.3rem;
-  height: 1.3rem;
-  top: 0px;
-  left: -0px;
-  margin-right: 0.9rem;
-  gap: 0px;
-  opacity: 0px;
-}
 nav {
-  padding: 15px;
+  padding: 0px 10px;
   width: Hug (237px) px;
   height: Hug (625px) px;
   left: 2rem !important;
@@ -97,7 +104,7 @@ nav ul {
 
 nav li {
   margin: 10px 0px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
   line-height: 2rem;
   color: #f5f5f5 !important;
@@ -112,19 +119,18 @@ nav a {
 /* logout feature style */
 
 .offcanvas-footer {
-  padding: 1rem;
-  border-top: 1px solid #dee2e6;
   text-align: center;
 }
 
 .footer-text {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   gap: 8px;
   font-size: 1rem;
   color: #fff;
   cursor: pointer;
+  padding-left: 15px;
 }
 
 .logout-icon {

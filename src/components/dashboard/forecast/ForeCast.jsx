@@ -30,8 +30,8 @@ function ForeCast() {
 
   return (
     <Card body className="mt-4 mb-5 forecast shadow">
+      <h3>Forecast</h3>
       <div className="forecast-container">
-        <h3 className="">Forecast</h3>
         <div className="d-flex">
           {/* todays weather */}
           <div className="forecast-today">
@@ -60,7 +60,7 @@ function ForeCast() {
                   }`}
                 >
                   <div className="day">{day.day}</div>
-                  <div className="icon">
+                  <div className="icon w-100 m-0 p-0">
                     <span>{day.icon}</span>
                     <span>{day.temperature}°C</span>
                   </div>
