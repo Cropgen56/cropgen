@@ -47,6 +47,7 @@ const FarmReport = () => {
             : "Select a Field to Generate Report"}
         </p>
         <button
+          className="px-3"
           style={{
             position: "absolute",
             zIndex: 2,
