@@ -5,7 +5,7 @@ import "antd/dist/reset.css"; // Import Ant Design styles
 import { useNavigate } from "react-router-dom";
 import FlagsSelect from "react-flags-select";
 import "react-phone-input-2/lib/style.css";
-import Component from "../../src/assets/Component.png";
+// import Component from "../../src/assets/Component.png";/
 import "../components/oldcomponents/i18n";
 
 import { useTranslation } from "react-i18next";
@@ -114,7 +114,7 @@ const Login = () => {
       {/* Left half: Image */}
       <div style={{ width: "45%", position: "relative" }}>
         <img
-          src={Component} // Path to the local image
+          // src={Component} // Path to the local image
           alt="Background"
           style={{ width: "100%", height: "100%" }}
         />

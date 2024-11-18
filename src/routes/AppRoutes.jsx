@@ -15,6 +15,8 @@ import Operation from "../pages/Operation";
 import Profile from "../pages/Profile";
 import PageNotFound from "../pages/PageNotFound";
 import Login from "../pages/Login";
+import AuthLayout from "../pages/AuthLayout";
+
 const AppRoutes = () => {
   return (
     <Router>
@@ -37,7 +39,7 @@ const AppRoutes = () => {
           />
           <Route path="/setting" element={<Setting />} />
         </Route>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<AuthLayout />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </Router>

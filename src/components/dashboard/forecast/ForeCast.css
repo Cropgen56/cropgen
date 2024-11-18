@@ -42,6 +42,9 @@
 }
 
 /* week weather forcart style */
+.week-weather {
+  width: 100%;
+}
 .forecast-week {
   display: flex;
   justify-content: space-between;

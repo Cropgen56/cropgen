@@ -86,15 +86,16 @@ span {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-.form-label {
+.disease-details-form-label {
   font-size: 1.1rem;
   color: #344e41;
   font-weight: 500;
 }
 
-.form-input {
+.disease-details-form-input {
   padding: 4px;
   font-size: 14px;
   border: none;

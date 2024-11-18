@@ -28,24 +28,36 @@ const CropDetails = () => {
         </div>
 
         {/* Form Section */}
-        <form className="form-content ">
+        <form className="form-content">
           <div className="form-group">
-            <label htmlFor="crop-name" className="form-label">
+            <label htmlFor="crop-name" className="disease-details-form-label">
               Crop Name
             </label>
-            <input id="crop-name" type="text" className="form-input" />
+            <input
+              id="crop-name"
+              type="text"
+              className="disease-details-form-input"
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="disease" className="form-label">
+            <label htmlFor="disease" className="disease-details-form-label">
               Disease
             </label>
-            <input id="disease" type="text" className="form-input" />
+            <input
+              id="disease"
+              type="text"
+              className="disease-details-form-input"
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="treatment" className="form-label">
+            <label htmlFor="treatment" className="disease-details-form-label">
               Treatment
             </label>
-            <input id="treatment" type="text" className="form-input" />
+            <input
+              id="treatment"
+              type="text"
+              className="disease-details-form-input"
+            />
           </div>
 
           {/* Feedback Section */}

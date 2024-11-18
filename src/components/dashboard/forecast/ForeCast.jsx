@@ -49,9 +49,9 @@ function ForeCast() {
             </div>
           </div>
           {/* week weather */}
-          <div className="">
+          <div className="week-weather">
             <h2 className="ps-4 ">This Week</h2>
-            <div className="forecast-week py-2 px-2">
+            <div className="forecast-week py-2">
               {weatherData.week.map((day, index) => (
                 <div
                   key={index}

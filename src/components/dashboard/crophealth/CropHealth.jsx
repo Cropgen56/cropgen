@@ -14,7 +14,11 @@ const CropHealth = () => {
           <table>
             <tr>
               <th>
-                <img src={cropImage} alt="crop image" className="crop-image" />
+                <img
+                  src={cropImage}
+                  alt="crop image"
+                  className="crop-health-crop-image"
+                />
               </th>
               <td className="crop-information ps-4">
                 <tr>
@@ -46,7 +50,7 @@ const CropHealth = () => {
       </div>
 
       <div className="d-flex justify-content-between align-items-center mt-5">
-        <div style={{ width: "50%" }} className="">
+        <div style={{ width: "50%" }}>
           <h2></h2>
           <SoilAnalysisChart />
         </div>
